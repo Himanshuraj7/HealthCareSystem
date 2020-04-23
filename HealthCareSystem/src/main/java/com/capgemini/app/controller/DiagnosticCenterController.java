@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.service.DiagnosticCenterService;
 
 @RestController
+@CrossOrigin
 public class DiagnosticCenterController {
 	
 	@Autowired
@@ -36,8 +38,8 @@ public class DiagnosticCenterController {
 	@DeleteMapping("/removeCenter/{centerId}")
     public ResponseEntity<DiagnosticCenter> removeCenter(@PathVariable("centerId") long id) {
 		
-			centerService.removeCenter(id);
-		return new ResponseEntity<DiagnosticCenter>(HttpStatus.NO_CONTENT);
+		centerService.removeCenter(id);
+		return new ResponseEntity<DiagnosticCenter>(HttpStatus.OK);
 	}
 
 

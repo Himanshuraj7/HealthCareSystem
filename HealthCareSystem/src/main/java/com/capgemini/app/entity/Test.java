@@ -1,5 +1,6 @@
 package com.capgemini.app.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,8 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
 @Table(name="TEST")
+@DynamicUpdate(true)
+@DynamicInsert(true)
 @SequenceGenerator(name ="test_seq",initialValue=101, allocationSize = 1)
 public class Test {
 	
@@ -21,10 +27,10 @@ public class Test {
 	
 	private String testName;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE}, optional = false)
 	@JoinColumn(name = "CENTER_ID", nullable = false)
 	private DiagnosticCenter center;
-
+	
 	public long getTestId() {
 		return testId;
 	}
