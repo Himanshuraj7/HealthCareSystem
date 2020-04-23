@@ -1,4 +1,4 @@
-package com.capgemini.exception;
+package com.capgemini.app.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;

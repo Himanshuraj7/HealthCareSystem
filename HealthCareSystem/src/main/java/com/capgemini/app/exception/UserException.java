@@ -1,4 +1,4 @@
-package com.capgemini.exception;
+package com.capgemini.app.exception;
 
 public class UserException extends Exception {
 	

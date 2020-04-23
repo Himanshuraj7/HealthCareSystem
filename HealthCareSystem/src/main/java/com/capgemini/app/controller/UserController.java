@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.app.entity.Users;
+import com.capgemini.app.exception.UserException;
 import com.capgemini.app.service.UserService;
-import com.capgemini.exception.UserException;
 
 @RestController
 public class UserController {

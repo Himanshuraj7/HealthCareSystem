@@ -31,7 +31,7 @@ public class Users {
 	@Column(name="username", length=20)
 	private String userName;
 	
-	@NotEmpty(message="contact number is mandatory" + "\n")
+	@NotEmpty(message="contact number is mandatory")
 	@Size(min=10, max=10, message="contact number size must be 10")
 	private String contactNo;
 	

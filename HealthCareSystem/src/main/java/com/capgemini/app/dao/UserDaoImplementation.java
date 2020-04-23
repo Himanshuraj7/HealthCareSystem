@@ -1,17 +1,11 @@
 package com.capgemini.app.dao;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Repository;
 
-import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Users;
-import com.capgemini.exception.UserException;
+import com.capgemini.app.exception.UserException;
 
 @Repository
 public class UserDaoImplementation implements UserDao{

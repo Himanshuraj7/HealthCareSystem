@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.capgemini.app.dao.UserDao;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Users;
-import com.capgemini.exception.UserException;
+import com.capgemini.app.exception.UserException;
 
 @Transactional
 @Service
