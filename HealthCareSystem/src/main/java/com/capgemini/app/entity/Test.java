@@ -49,11 +49,10 @@ public class Test {
 		this.center = center;
 	}
 
-	public Test(long testId, String testName, DiagnosticCenter center) {
+	public Test(long testId, String testName) {
 		super();
 		this.testId = testId;
 		this.testName = testName;
-		this.center = center;
 	}
 
 	public Test() {

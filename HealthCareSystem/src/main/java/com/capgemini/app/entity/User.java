@@ -1,10 +1,6 @@
 package com.capgemini.app.entity;
 
-import java.math.BigInteger;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,20 +13,16 @@ import javax.persistence.Table;
 @Table(name="users")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
-    @SequenceGenerator(sequenceName = "user_seq", allocationSize = 1, name = "user_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userseq")
+    @SequenceGenerator(sequenceName = "userseq", allocationSize = 1, name = "userseq")
 	private long userId;
-//	@OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "address_id", referencedColumnName = "id")
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name="appointmentId",referencedColumnName = "userId")
-	@OneToOne(fetch = FetchType.LAZY,
-            cascade =  CascadeType.ALL,
-            mappedBy = "user")
+
+	@OneToOne
+	@JoinColumn(name="appointmentId")
 	private Appointment appointment;
 	private String userPassword;
 	private String userName;
-	private BigInteger contactNo;
+	private String contactNo;
 	private String userRole;
 	private String emailId;
 	public long getUserId() {
@@ -58,10 +50,10 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public BigInteger getContactNo() {
+	public String getContactNo() {
 		return contactNo;
 	}
-	public void setContactNo(BigInteger contactNo) {
+	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
 	}
 	public String getUserRole() {
@@ -80,7 +72,7 @@ public class User {
 	{
 	super();
 	}
-	public User(long userId, Appointment appointment, String userPassword, String userName, BigInteger contactNo,
+	public User(long userId, Appointment appointment, String userPassword, String userName, String contactNo,
 			String userRole, String emailId) {
 		super();
 		this.userId = userId;

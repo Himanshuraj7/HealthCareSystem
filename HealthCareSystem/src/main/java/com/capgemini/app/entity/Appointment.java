@@ -1,58 +1,51 @@
 package com.capgemini.app.entity;
 
-import java.math.BigInteger;
-import java.util.Date;
 
+import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-//import javax.persistence.JoinColumn;
-//import javax.persistence.ManyToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="appointment")
+@Table(name="APPOINTMENT")
 public class Appointment {
 	
-//	@ManyToOne(optional = false)
-//	@JoinColumn(name="centerId")
-//	private DiagnosticCenter center;
+	@ManyToOne
+    @JoinColumn(name="centerId")
+	private DiagnosticCenter center;
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "appointment_seq")
     @SequenceGenerator(sequenceName = "appointment_seq", allocationSize = 1, name = "appointment_seq")
-	private BigInteger appointmentId;
+	private long appointmentId;
 	
-//	@OneToOne(mappedBy = "appointment")
-//	private User user;
-	
-	@OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "userId", nullable = false)
-    private User user;
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	private Test test;
+//	
+//	public Test getTest() {
+//		return test;
+//	}
+//	public void setTest(Test test) {
+//		this.test = test;
+//	}
 	private Date datetime;
 	
 	private boolean approved;
 	
-//	public DiagnosticCenter getCenter() {
-//		return center;
-//	}
-//	public void setCenter(DiagnosticCenter center) {
-//		this.center = center;
-//	}
-	public BigInteger getAppointmentId() {
+	public DiagnosticCenter getCenter() {
+		return center;
+	}
+	public void setCenter(DiagnosticCenter center) {
+		this.center = center;
+	}
+	public long getAppointmentId() {
 		return appointmentId;
 	}
-	public void setAppointmentId(BigInteger appointmentId) {
+	public void setAppointmentId(long appointmentId) {
 		this.appointmentId = appointmentId;
 	}
 
@@ -71,13 +64,15 @@ public class Appointment {
 	public Appointment() {
 		super();
 	}
-	public Appointment(BigInteger appointmentId, User user, Date datetime, boolean approved) {
+	public Appointment(DiagnosticCenter center, long appointmentId, Date datetime, boolean approved) {
 		super();
+		this.center = center;
 		this.appointmentId = appointmentId;
-		this.user = user;
+		
 		this.datetime = datetime;
 		this.approved = approved;
 	}
+	
 	
 
 }
