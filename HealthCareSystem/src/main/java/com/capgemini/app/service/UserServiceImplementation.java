@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.capgemini.app.dao.UserDao;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Users;
+import com.capgemini.exception.UserException;
 
 @Transactional
 @Service
@@ -24,8 +25,13 @@ public class UserServiceImplementation implements UserService{
 	}
 
 	@Override
-	public List<Users> getAllUser() {
-		return userDao.getAllUser();
+	public Users getMailId(String mailId) throws UserException {
+		return userDao.getMailId(mailId);
+	}
+
+	@Override
+	public Users getPassword(String password) throws UserException {
+		return userDao.getPassword(password);
 	}
 
 }

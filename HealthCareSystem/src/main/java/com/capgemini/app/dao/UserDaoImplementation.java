@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Users;
+import com.capgemini.exception.UserException;
 
 @Repository
 public class UserDaoImplementation implements UserDao{
@@ -26,10 +27,19 @@ public class UserDaoImplementation implements UserDao{
 	}
 
 	@Override
-	public List<Users> getAllUser() {
-		String Qstr="SELECT user FROM User user";
-		TypedQuery<Users> query=em.createQuery(Qstr, Users.class);
-		return query.getResultList();	
+	public Users getMailId(String mailId) throws UserException {
+		Users users=em.find(Users.class, mailId);
+		if(users==null) throw new UserException("User not registered");
+		return users;
 	}
+
+	@Override
+	public Users getPassword(String password) throws UserException {
+		Users users=em.find(Users.class, password);
+		if(users==null) throw new UserException("User Id or Password is invalid");
+		return users;
+	}
+	
+	
 
 }

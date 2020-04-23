@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -29,11 +27,17 @@ public class Users {
 	@Pattern(regexp="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,14}$", message=": Password must contain one number,one alphabet,one special character and size should be at least 8 characters and not more than 14 characters")
 	private String userPassword;
 	
+	@NotEmpty(message="username is mandatory")
 	@Column(name="username", length=20)
 	private String userName;
 	
+	@NotEmpty(message="contact number is mandatory" + "\n")
+	@Size(min=10, max=10, message="contact number size must be 10")
 	private String contactNo;
+	
 	private String userRole;
+	
+	@NotEmpty(message="email id is mandatory")
 	private String emailId;
 	
 	public long getUserId() {
@@ -84,8 +88,8 @@ public class Users {
 			String contactNo, String userRole, String emailId) {
 		super();
 		this.userId = userId;
-		this.userPassword = userPassword;
 		this.userName = userName;
+		this.userPassword = userPassword;
 		this.contactNo = contactNo;
 		this.userRole = userRole;
 		this.emailId = emailId;
