@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import com.capgemini.app.entity.DiagnosticCenter;
+import com.capgemini.app.entity.Test;
 
 @Repository
 
@@ -41,5 +42,27 @@ public class DiagnosticCenterDaoImplementation implements DiagnosticCenterDao{
 		TypedQuery<DiagnosticCenter> query=em.createQuery(Qstr,DiagnosticCenter.class);
 		return query.getResultList();	
 	}
+
+	@Override
+	public DiagnosticCenter getCenter(long centerId) {
+		
+		DiagnosticCenter center=em.find(DiagnosticCenter.class,centerId);
+		return center;
+	}
+	
+	@Override
+	public List<Test> getAllTest() {
+		String Qstr="SELECT test FROM Test test";
+		TypedQuery<Test> query=em.createQuery(Qstr,Test.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Test> getTest(long id) {
+		String Qstr="SELECT test FROM Test test WHERE test.center="+id;
+		TypedQuery<Test> query=em.createQuery(Qstr,Test.class);
+		return query.getResultList();
+	}
+
 
 }

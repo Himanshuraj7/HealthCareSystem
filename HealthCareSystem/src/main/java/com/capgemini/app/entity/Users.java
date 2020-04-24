@@ -108,7 +108,8 @@ public class Users {
 	}
 	
 
-	public Users(long userId, Appointment appointment,
+	
+	public Users(long userId,
 			@NotEmpty(message = "password is mandatory") @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,14}$", message = ": Password must contain one number,one alphabet,one special character and size should be at least 8 characters and not more than 14 characters") String userPassword,
 			String userName, @NotEmpty(message = "contact number is mandatory") String contactNo,
 			@NotEmpty(message = "User role is mandatory") String userRole,
@@ -116,7 +117,6 @@ public class Users {
 			@NotEmpty(message = "Gender is mandatory") String gender) {
 		super();
 		this.userId = userId;
-		this.appointment = appointment;
 		this.userPassword = userPassword;
 		this.userName = userName;
 		this.contactNo = contactNo;

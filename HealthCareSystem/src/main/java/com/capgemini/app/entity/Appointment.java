@@ -70,11 +70,23 @@ public class Appointment {
 	public void setApproved(boolean approved) {
 		this.approved = approved;
 	}
+	
 
-	public Appointment(long appointmentId, DiagnosticCenter center, Date datetime, boolean approved) {
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	
+
+	public Appointment(long appointmentId, DiagnosticCenter center, Users user, Date datetime, boolean approved) {
 		super();
 		this.appointmentId = appointmentId;
 		this.center = center;
+		this.user = user;
 		this.datetime = datetime;
 		this.approved = approved;
 	}

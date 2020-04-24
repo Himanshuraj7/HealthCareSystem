@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.app.entity.DiagnosticCenter;
+import com.capgemini.app.entity.Test;
 import com.capgemini.app.service.DiagnosticCenterService;
 
 @RestController
@@ -40,6 +41,31 @@ public class DiagnosticCenterController {
 		
 		centerService.removeCenter(id);
 		return new ResponseEntity<DiagnosticCenter>(HttpStatus.OK);
+	}
+	
+	@GetMapping("/getCenter/{centerId}")
+    public ResponseEntity<DiagnosticCenter> getCenter(@PathVariable("centerId") long id) {
+		DiagnosticCenter center= centerService.getCenter(id);
+		if(center!=null)
+			return new ResponseEntity<DiagnosticCenter>(center,HttpStatus.OK);
+		else
+			return new ResponseEntity<DiagnosticCenter>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/getAllTest")
+    public ResponseEntity<List<Test>> getAllTest() {
+			List<Test> list = centerService.getAllTest();
+			return new ResponseEntity<List<Test>>(list,HttpStatus.OK);
+	}
+	
+	@GetMapping("/getTest/{id}")
+	public ResponseEntity<List<Test>> retrieveTrainee(@PathVariable long id) {
+		List<Test> test=centerService.getTest(id);
+		if(test!=null)
+		return new ResponseEntity<List<Test>>(test,HttpStatus.OK);
+		else
+			return new ResponseEntity<List<Test>>(test,HttpStatus.NOT_FOUND);
+		
 	}
 
 
