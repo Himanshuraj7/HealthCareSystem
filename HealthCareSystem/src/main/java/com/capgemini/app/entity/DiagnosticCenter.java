@@ -1,4 +1,4 @@
-package com.capgemini.app.entities;
+package com.capgemini.app.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -58,4 +58,3 @@ public class DiagnosticCenter {
 	}
 
 }
-

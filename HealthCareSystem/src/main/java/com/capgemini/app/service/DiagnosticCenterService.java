@@ -1,13 +1,11 @@
-package com.capgemini.app.dao;
-
+package com.capgemini.app.service;
 
 import java.util.List;
 
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Test;
 
-
-public interface DiagnosticCenterDao {
+public interface DiagnosticCenterService {
 	
 	boolean addCenter(DiagnosticCenter center);
 	
@@ -20,5 +18,5 @@ public interface DiagnosticCenterDao {
 	List<Test> getAllTest();
 	
 	List<Test> getTest(long id);
-	
+
 }

@@ -1,10 +1,10 @@
-package com.capgemini.app.dao;
+package com.capgemini.app.service;
 
 import java.util.List;
 
 import com.capgemini.app.entity.Test;
 
-public interface TestDao {
+public interface TestService {
 	
 	boolean addTest(Test test);
 	
@@ -13,6 +13,5 @@ public interface TestDao {
 	List<Test> getAllTest();
 	
 	List<Test> getTest(long id);
-	
 
 }

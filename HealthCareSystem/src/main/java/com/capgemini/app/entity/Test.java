@@ -1,4 +1,4 @@
-package com.capgemini.app.entities;
+package com.capgemini.app.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -56,14 +56,14 @@ public class Test {
 	}
 
 	public Test(long testId, String testName, DiagnosticCenter center) {
-		super();
+		
 		this.testId = testId;
 		this.testName = testName;
 		this.center = center;
 	}
 
 	public Test() {
-		super();
+		
 	}
 
 }
