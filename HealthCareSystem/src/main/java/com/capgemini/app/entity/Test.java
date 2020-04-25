@@ -12,11 +12,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="TEST")
-@SequenceGenerator(name ="test_seq",initialValue=101, allocationSize = 1)
+
 public class Test {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "test_seq")
+	@SequenceGenerator(name ="test_seq",initialValue=101, allocationSize = 1)
 	private long testId;
 	
 	private String testName;
