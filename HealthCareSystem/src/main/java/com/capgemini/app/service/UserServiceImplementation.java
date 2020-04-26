@@ -21,7 +21,7 @@ public class UserServiceImplementation implements UserService{
 		return userDao.addUser(user);
 	}
 	
-	// login function
+	// login function, validating email id and password
 	@Override
 	public long login(String emailId, String userPassword) throws UserException{   
     	if(userDao.checkUserByEmail(emailId)==false)

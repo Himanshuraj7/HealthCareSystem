@@ -29,20 +29,19 @@ public class UserController {
 	public String addUser(@Valid @RequestBody Users user, BindingResult br) throws UserException{
 		System.out.println(user.toString());
 		
-//		String err="";
-//		if(br.hasErrors()) {
-//			List<FieldError> errors=br.getFieldErrors();
-//			for(FieldError error : errors)
-//				err= err + error.getDefaultMessage() + " ";
-//			throw new UserException(err);
-//		}
+		String err="";
+		if(br.hasErrors()) {
+			List<FieldError> errors=br.getFieldErrors();
+			for(FieldError error : errors)
+				err= err + error.getDefaultMessage() + " ";
+			throw new UserException(err);
+		}
 		try {
 			userService.addUser(user);
 			return "User Added";
 		}
 		catch(Exception e) {
-			//throw new UserException("Please enter valid Password or Contact Number or Email Id");
-			throw new UserException(e.getMessage());
+			throw new UserException("Please enter valid Password or Contact Number or Email Id");
 		}
 	}
 	

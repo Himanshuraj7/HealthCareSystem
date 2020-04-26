@@ -21,7 +21,7 @@ public class UserDaoImplementation implements UserDao{
 		return true;
 	}
 	
-	// login function
+	// login function, checking whether account exist or not
 	@Override
 	public boolean checkUserByEmail(String emailId){
    		String Qstr="SELECT users.emailId FROM Users users WHERE users.emailId= :emailId";
@@ -35,7 +35,7 @@ public class UserDaoImplementation implements UserDao{
    		return true;
    	}
 	
-	// login function
+	// login function, getting email id for matching with password entered
 	@Override
 	public Users getUserByEmail(String emailId){
 		String Qstr="SELECT users FROM Users users WHERE users.emailId= :emailId";
