@@ -1,7 +1,5 @@
 package com.capgemini.app.service;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +14,14 @@ public class UserServiceImplementation implements UserService{
 	
 	@Autowired
 	private UserDao userDao;
-
+	
+	// register function
 	@Override
 	public boolean addUser(Users user) {
 		return userDao.addUser(user);
 	}
-
+	
+	// login function
 	@Override
 	public long login(String emailId, String userPassword) throws UserException{   
     	if(userDao.checkUserByEmail(emailId)==false)
@@ -33,5 +33,13 @@ public class UserServiceImplementation implements UserService{
 
     	return user.getUserId();
     }
+
+	// update function
+	@Override
+	public String updateUser(Users users, long userId) throws UserException{
+		if(userDao.update(users, userId)==false)
+			throw new UserException("No details exist for given User");
+		return "user details updated";	
+	}
 
 }

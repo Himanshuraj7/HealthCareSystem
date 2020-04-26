@@ -28,8 +28,6 @@ public class DiagnosticCenter {
 	@NotEmpty(message="Center name is mandatory")
 	private String centerName;
 	
-	
-	
 	public long getCenterId() {
 		return centerId;
 	}

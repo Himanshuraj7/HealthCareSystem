@@ -1,15 +1,11 @@
 package com.capgemini.app.dao;
 
-import java.util.List;
-
+import com.capgemini.app.entity.Users;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
-
-import com.capgemini.app.entity.Users;
-import com.capgemini.app.exception.UserException;
 
 @Repository
 public class UserDaoImplementation implements UserDao{
@@ -17,13 +13,16 @@ public class UserDaoImplementation implements UserDao{
 	@PersistenceContext
 	private EntityManager em;
 	
-
+	
+	// register function
 	@Override
 	public boolean addUser(Users user) {
 		em.persist(user);
 		return true;
 	}
-
+	
+	// login function
+	@Override
 	public boolean checkUserByEmail(String emailId){
    		String Qstr="SELECT users.emailId FROM Users users WHERE users.emailId= :emailId";
    		TypedQuery<String> query=em.createQuery(Qstr,String.class).setParameter("emailId",emailId);
@@ -36,10 +35,28 @@ public class UserDaoImplementation implements UserDao{
    		return true;
    	}
 	
+	// login function
+	@Override
 	public Users getUserByEmail(String emailId){
 		String Qstr="SELECT users FROM Users users WHERE users.emailId= :emailId";
    		TypedQuery<Users> query=em.createQuery(Qstr,Users.class).setParameter("emailId",emailId);
    		return query.getSingleResult();
+	}
+	
+	// update function
+	@Override
+	public boolean update(Users users, long userId) {
+		  Users userUpdate= em.find(Users.class, userId);
+		  if(userUpdate==null) return false;
+		  
+		  userUpdate.setUserPassword(users.getUserPassword());
+		  userUpdate.setContactNo(users.getContactNo());
+		  userUpdate.setEmailId(users.getEmailId());
+		 
+		  em.persist(userUpdate);
+		  
+		  return true;
+		
 	}
 	
 }
