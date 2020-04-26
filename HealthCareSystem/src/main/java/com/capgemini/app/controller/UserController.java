@@ -57,7 +57,7 @@ public class UserController {
 		}
 	}
 	
-	// update user function using userName
+	// update user function using userId
 	@PutMapping("/update/{userId}")
 	public String updateUser(@PathVariable("userId") long userId, @RequestBody Users users) throws UserException{
 	    	System.out.println(users.toString());
