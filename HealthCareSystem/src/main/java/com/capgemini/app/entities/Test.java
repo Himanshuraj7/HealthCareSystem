@@ -11,7 +11,7 @@ public class Test {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "testId_generator")
-	@SequenceGenerator(name = "testId_generator", initialValue = 101,allocationSize = 1)
+	@SequenceGenerator(name = "testId_generator", initialValue = 101, allocationSize = 1)
 	private long testId;
 	private String testName;
 
@@ -44,6 +44,12 @@ public class Test {
 
 	public Test() {
 
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+
+		return super.equals(obj);
 	}
 
 }

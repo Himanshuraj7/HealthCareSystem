@@ -24,6 +24,13 @@ public class TestDaoImpl implements TestDao {
 		return true;
 	}
 
+	@Override
+	public boolean removeCenter(long centerId) {
+		Center center = em.find(Center.class, centerId);
+		em.remove(center);;
+		return true;
+	}
+
 	public List<Center> getAllCenter() {
 		String str = "SELECT center FROM Center center";
 		TypedQuery<Center> query = em.createQuery(str, Center.class);
@@ -50,20 +57,19 @@ public class TestDaoImpl implements TestDao {
 	@Override
 	public boolean removeTest(long centerId, Test test) {
 		Center center = em.find(Center.class, centerId);
-		
-		//(center.getTest().contains(test);
-			center.getTest().remove(test);
-			em.persist(center);
-		return true;
+
+		if (center.getTest().contains(test)) {
+			em.remove(test);
+			return true;
+		} else
+			return false;
 	}
-	
+
 	@Override
 	public Center getCenter2(long centerId) {
 		Center center = em.find(Center.class, centerId);
 		return center;
 
 	}
-	
-	
 
 }

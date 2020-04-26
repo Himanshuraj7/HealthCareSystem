@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,7 +22,7 @@ public class Center {
 
 	private String centerName;
 
-	@OneToMany(cascade = CascadeType.ALL, targetEntity = Test.class)
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Test.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "center_no", referencedColumnName = "centerId")
 	private List<Test> test;
 

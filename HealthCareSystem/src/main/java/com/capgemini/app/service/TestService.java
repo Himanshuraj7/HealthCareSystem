@@ -9,6 +9,7 @@ import com.capgemini.app.entities.Test;
 public interface TestService {
 
 	public boolean addCenter(TestDto testDto);
+	public boolean removeCenter(long centerId);
 	public List<Center> getAllCenter();
 	public List<Center> getCenter(long centerId);
 	public boolean addTest(long centerId,Test test);

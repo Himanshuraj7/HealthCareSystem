@@ -51,4 +51,10 @@ public class TestServiceImpl implements TestService {
 
 	}
 
+	@Override
+	public boolean removeCenter(long centerId) {
+		return testDao.removeCenter(centerId);
+		
+	}
+
 }
