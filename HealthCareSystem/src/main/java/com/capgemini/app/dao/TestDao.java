@@ -2,17 +2,15 @@ package com.capgemini.app.dao;
 
 import java.util.List;
 
-import com.capgemini.app.entity.Test;
+import com.capgemini.app.dto.TestDto;
+import com.capgemini.app.entities.Center;
+import com.capgemini.app.entities.Test;
 
 public interface TestDao {
-	
-	boolean addTest(Test test);
-	
-	boolean removeTest(long testId);
-	
-	List<Test> getAllTest();
-	
-	List<Test> getTest(long id);
-	
-
+public boolean addCenter(TestDto testDto);
+public List<Center> getAllCenter();
+public List<Center> getCenter(long centerid);
+public boolean addTest(long centerId,Test test);
+public Center getCenter2(long centerId);
+public boolean removeTest(long centerId, Test test);
 }
