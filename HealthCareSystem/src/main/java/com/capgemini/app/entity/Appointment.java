@@ -30,6 +30,14 @@ public class Appointment {
 	 @JoinColumn(name = "userId", nullable = false)
 	 private Users user;
 
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
 	private Date datetime;
 
 	private boolean approved;
@@ -66,8 +74,9 @@ public class Appointment {
 		this.approved = approved;
 	}
 
-	public Appointment(long appointmentId, DiagnosticCenter center, Date datetime, boolean approved) {
+	public Appointment(long user, long appointmentId, DiagnosticCenter center, Date datetime, boolean approved) {
 		super();
+		this.user.setUserId(user);
 		this.appointmentId = appointmentId;
 		this.center = center;
 		this.datetime = datetime;

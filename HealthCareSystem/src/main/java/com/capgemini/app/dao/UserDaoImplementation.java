@@ -1,7 +1,11 @@
 package com.capgemini.app.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Repository;
 
 import com.capgemini.app.entity.Users;
@@ -20,20 +24,22 @@ public class UserDaoImplementation implements UserDao{
 		return true;
 	}
 
-	@Override
-	public Users getMailId(String mailId) throws UserException {
-		Users users=em.find(Users.class, mailId);
-		if(users==null) throw new UserException("User not registered");
-		return users;
-	}
-
-	@Override
-	public Users getPassword(String password) throws UserException {
-		Users users=em.find(Users.class, password);
-		if(users==null) throw new UserException("User Id or Password is invalid");
-		return users;
+	public boolean checkUserByEmail(String emailId){
+   		String Qstr="SELECT users.emailId FROM Users users WHERE users.emailId= :emailId";
+   		TypedQuery<String> query=em.createQuery(Qstr,String.class).setParameter("emailId",emailId);
+   		try{
+   			query.getSingleResult();
+   		}
+   		catch(Exception ex){
+   			return false;
+   		}
+   		return true;
+   	}
+	
+	public Users getUserByEmail(String emailId){
+		String Qstr="SELECT users FROM Users users WHERE users.emailId= :emailId";
+   		TypedQuery<Users> query=em.createQuery(Qstr,Users.class).setParameter("emailId",emailId);
+   		return query.getSingleResult();
 	}
 	
-	
-
 }

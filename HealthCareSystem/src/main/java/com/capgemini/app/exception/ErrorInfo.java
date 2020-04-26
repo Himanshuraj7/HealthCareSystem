@@ -12,7 +12,6 @@ public class ErrorInfo {
 		this.message = message;
 	}
 
-
 	public String getMessage() {
 		return message;
 	}

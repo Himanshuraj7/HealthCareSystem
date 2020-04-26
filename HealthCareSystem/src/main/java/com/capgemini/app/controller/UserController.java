@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +23,9 @@ import com.capgemini.app.service.UserService;
 public class UserController {
 	
 	@Autowired
-	private UserService userservice;
+	private UserService userService;
 	
-	@PostMapping("/addUser")
+	@PostMapping("/register")
 	public String addUser(@Valid @RequestBody Users user, BindingResult br) throws UserException{
 		System.out.println(user.toString());
 		
@@ -38,19 +37,22 @@ public class UserController {
 			throw new UserException(err);
 		}
 		try {
-			userservice.addUser(user);
+			userService.addUser(user);
 			return "User Added";
 		}
 		catch(Exception e) {
 			throw new UserException("Please enter valid Password or Contact Number or Email Id");
 		}
-		
 	}
 	
-//	@GetMapping("/getMailId")
-//    public ResponseEntity<List<Users>> getAllUser() {
-//		List<Users> list = userservice.getAllUser();
-//		return new ResponseEntity<List<Users>>(list, HttpStatus.OK);
-//	}
-	
+	@GetMapping("/login/{emailId}/{userPassword}")
+	public ResponseEntity<Long> login(@PathVariable("emailId") String emailId, @PathVariable("userPassword") String userPassword) throws UserException{
+		try {
+			long userId=userService.login(emailId, userPassword);
+			return new ResponseEntity<Long>(userId, HttpStatus.OK);
+		}
+		catch(Exception e) {
+			throw new UserException(e.getMessage());
+		}
+	}
 }

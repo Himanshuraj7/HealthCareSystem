@@ -36,6 +36,8 @@ public class Users {
 	private String contactNo;
 	
 	private String userRole;
+	private int age;
+	private String gender;
 	
 	@NotEmpty(message="email id is mandatory")
 	private String emailId;
@@ -84,17 +86,34 @@ public class Users {
 		this.emailId = emailId;
 	}
 	
-	public Users(long userId, String userPassword, String userName, 
-			String contactNo, String userRole, String emailId) {
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	
+	
+	
+	public Users(long userId, String userPassword, String userName, String contactNo,
+			String userRole, int age, String gender, String emailId) {
 		super();
 		this.userId = userId;
-		this.userName = userName;
 		this.userPassword = userPassword;
+		this.userName = userName;
 		this.contactNo = contactNo;
 		this.userRole = userRole;
+		this.age = age;
+		this.gender = gender;
 		this.emailId = emailId;
 	}
-
+	
 	public Users() {
 		super();
 	}

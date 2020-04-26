@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -29,7 +28,8 @@ public class DiagnosticCenter {
 	@NotEmpty(message="Center name is mandatory")
 	private String centerName;
 	
-
+	
+	
 	public long getCenterId() {
 		return centerId;
 	}
