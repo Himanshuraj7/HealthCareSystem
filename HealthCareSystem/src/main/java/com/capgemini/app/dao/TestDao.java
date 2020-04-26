@@ -10,8 +10,9 @@ public interface TestDao {
 public boolean addCenter(TestDto testDto);
 public boolean removeCenter(long centerId);
 public List<Center> getAllCenter();
+public List<Center> getOnlyCenter(); 
 public List<Center> getCenter(long centerid);
 public boolean addTest(long centerId,Test test);
 public Center getCenter2(long centerId);
-public boolean removeTest(long centerId, Test test);
+public boolean removeTest(long testId);
 }

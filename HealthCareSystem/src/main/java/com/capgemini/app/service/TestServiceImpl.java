@@ -46,8 +46,8 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
-	public boolean removeTest(long centerId, Test test) {
-		return testDao.removeTest(centerId, test);
+	public boolean removeTest(long testId) {
+		return testDao.removeTest(testId);
 
 	}
 
@@ -55,6 +55,12 @@ public class TestServiceImpl implements TestService {
 	public boolean removeCenter(long centerId) {
 		return testDao.removeCenter(centerId);
 		
+	}
+
+	@Override
+	public List<Center> getOnlyCenter() {
+		testDao.getOnlyCenter();
+		return null;
 	}
 
 }

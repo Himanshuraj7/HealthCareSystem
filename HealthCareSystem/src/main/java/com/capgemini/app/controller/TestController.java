@@ -28,8 +28,9 @@ public class TestController {
 		return testService.addCenter(testDto);
 
 	}
+	//Removes a particular test according to given centerId along with the tests available inside the center
 	@PostMapping("/removeCenter/{centerId}")
-	public boolean removeCenter(@PathVariable long centerId) {
+	public boolean removeCenter(@PathVariable long centerId) {								//Working
 		return testService.removeCenter(centerId);
 	}
 
@@ -37,6 +38,11 @@ public class TestController {
 	@GetMapping("/centersTests")										//Working
 	public List<Center> getAllCenter() {
 		return testService.getAllCenter();
+	}
+	
+	@GetMapping("/centers")
+	public List<Center> getOnlyCenter(){
+		return testService.getOnlyCenter();
 	}
 
 	// For displaying a particular center along with its tests available.
@@ -56,9 +62,9 @@ public class TestController {
 	public Center getCenter2(@PathVariable long centerId) {								//Working
 		return testService.getCenter2(centerId);
 	}
-	
-	@PostMapping("/removeTest/{centerId}")
-	public boolean removeTest(@PathVariable long centerId, @RequestBody Test test) {
-		return testService.removeTest(centerId, test);
+	//Method for removing a particular test under a center using its test id
+	@PostMapping("/removeTest/{testId}")
+	public boolean removeTest(@PathVariable long testId) {					//Working
+		return testService.removeTest(testId);
 	}
 }

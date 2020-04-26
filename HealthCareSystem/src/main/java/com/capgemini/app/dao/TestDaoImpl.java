@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,7 @@ public class TestDaoImpl implements TestDao {
 	@Override
 	public boolean removeCenter(long centerId) {
 		Center center = em.find(Center.class, centerId);
-		em.remove(center);;
+		em.remove(center);
 		return true;
 	}
 
@@ -36,11 +37,18 @@ public class TestDaoImpl implements TestDao {
 		TypedQuery<Center> query = em.createQuery(str, Center.class);
 		return query.getResultList();
 	}
+	
+	@Override
+	public List<Center> getOnlyCenter() {
+		String str = "SELECT center.centerId,center.centerName FROM Center center";
+		Query query = em.createQuery(str, Center.class);
+		return query.getResultList();
+	}
 
 	@Override
 	public List<Center> getCenter(long centerid) {
-		String Qstr = "SELECT center FROM Center center WHERE center.centerId=" + centerid;
-		TypedQuery<Center> query = em.createQuery(Qstr, Center.class);
+		String str = "SELECT center FROM Center center WHERE center.centerId=" + centerid;
+		TypedQuery<Center> query = em.createQuery(str, Center.class);
 		return query.getResultList();
 	}
 
@@ -55,14 +63,11 @@ public class TestDaoImpl implements TestDao {
 	}
 
 	@Override
-	public boolean removeTest(long centerId, Test test) {
-		Center center = em.find(Center.class, centerId);
-
-		if (center.getTest().contains(test)) {
-			em.remove(test);
-			return true;
-		} else
-			return false;
+	public boolean removeTest(long testId) {
+		Test test = em.find(Test.class, testId);
+		em.remove(test);
+		
+		return true;
 	}
 
 	@Override
@@ -71,5 +76,7 @@ public class TestDaoImpl implements TestDao {
 		return center;
 
 	}
+
+	
 
 }
