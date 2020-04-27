@@ -1,13 +1,10 @@
 package com.capgemini.app.entity;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -18,18 +15,15 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name="TEST")
 @DynamicUpdate(true)
 @DynamicInsert(true)
-@SequenceGenerator(name ="test_seq",initialValue=101, allocationSize = 1)
 public class Test {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "test_seq")
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "test_seq")
+	@SequenceGenerator(name ="test_seq",initialValue=101, allocationSize = 1)
 	private long testId;
 	
+	@Column(name="TEST_NAME",length=20)
 	private String testName;
-	
-	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE}, optional = false)
-	@JoinColumn(name = "CENTER_ID", nullable = false)
-	private DiagnosticCenter center;
 	
 	public long getTestId() {
 		return testId;
@@ -47,19 +41,12 @@ public class Test {
 		this.testName = testName;
 	}
 
-	public DiagnosticCenter getCenter() {
-		return center;
-	}
 
-	public void setCenter(DiagnosticCenter center) {
-		this.center = center;
-	}
 
-	public Test(long testId, String testName, DiagnosticCenter center) {
+	public Test(long testId, String testName) {
 		super();
 		this.testId = testId;
 		this.testName = testName;
-		this.center = center;
 	}
 
 	public Test() {

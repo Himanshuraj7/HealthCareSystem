@@ -8,6 +8,7 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
+import com.capgemini.app.dto.CenterDto;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Test;
 
@@ -20,20 +21,15 @@ public class DiagnosticCenterDaoImplementation implements DiagnosticCenterDao{
 	
 
 	@Override
-	public boolean addCenter(DiagnosticCenter center) {
-		em.persist(center);
+	public boolean addCenter(CenterDto centerDto) {
+		em.persist(centerDto.getCenter());
 		return true;
 	}
 
 	@Override
-	public boolean removeCenter(long id) {
-		DiagnosticCenter center = em.find(DiagnosticCenter.class, id);
-		if(center!=null)
-			{
+	public boolean removeCenter(DiagnosticCenter center) {
 			em.remove(center);
 			return true;
-			}
-		return false;
 	}
 
 	@Override
@@ -59,9 +55,25 @@ public class DiagnosticCenterDaoImplementation implements DiagnosticCenterDao{
 
 	@Override
 	public List<Test> getTest(long id) {
-		String Qstr="SELECT test FROM Test test WHERE test.center="+id;
+		String Qstr="SELECT test FROM Test test WHERE test.centerId="+id;
 		TypedQuery<Test> query=em.createQuery(Qstr,Test.class);
 		return query.getResultList();
+	}
+
+	@Override
+	public boolean addTest(long centerId,Test test) {
+		DiagnosticCenter center = em.find(DiagnosticCenter.class, centerId);
+		test.setTestName(test.getTestName());
+		center.getTest().add(test);
+		em.persist(center);
+		return true;
+	}
+
+	@Override
+	public boolean removeTest(long testId) {
+		Test test = em.find(Test.class, testId);
+		em.remove(test);
+		return true;
 	}
 
 

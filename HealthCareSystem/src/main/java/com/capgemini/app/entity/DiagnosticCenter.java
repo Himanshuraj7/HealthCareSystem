@@ -1,15 +1,18 @@
 package com.capgemini.app.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -21,15 +24,23 @@ import org.hibernate.annotations.DynamicUpdate;
 public class DiagnosticCenter {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "center_seq")  
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "center_seq")  
 	@SequenceGenerator(name ="center_seq",initialValue=1001, allocationSize = 1)
 	private long centerId;
 	
-	@Column(name="CENTER_NAME")
-	@NotEmpty(message="Center name is mandatory")
-	@Size(min=3, max=25, message="Name can be 3 and 25 characters")
+	@Column(name="CENTER_NAME",length=20)
 	private String centerName;
 	
+	@Column(name="ADDRESS",length=40)
+	private String address;
+	
+	@Column(name="CONTACT_NO",length=10)
+	private String contactNo;
+	
+	@OneToMany(cascade = CascadeType.ALL, targetEntity = Test.class, fetch = FetchType.EAGER)
+	@JoinColumn(name = "centerId", referencedColumnName = "centerId")
+	private List<Test> test;
+
 
 	public long getCenterId() {
 		return centerId;
@@ -43,18 +54,59 @@ public class DiagnosticCenter {
 		return centerName;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getContactNo() {
+		return contactNo;
+	}
+
+	public void setContactNo(String contactNo) {
+		this.contactNo = contactNo;
+	}
+
 	public void setCenterName(String centerName) {
 		this.centerName = centerName;
 	}
 
-	public DiagnosticCenter(long centerId, String centerName) {
+
+	public List<Test> getTest() {
+		return test;
+	}
+
+	public void setTest(List<Test> test) {
+		this.test = test;
+	}
+
+	public DiagnosticCenter(long centerId, String centerName, String address, String contactNo, List<Test> test) {
 		super();
 		this.centerId = centerId;
 		this.centerName = centerName;
+		this.address = address;
+		this.contactNo = contactNo;
+		this.test = test;
 	}
 
 	public DiagnosticCenter() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "DiagnosticCenter [centerId=" + centerId + ", centerName=" + centerName + ", address=" + address
+				+ ", contactNo=" + contactNo + ", test=" + test + "]";
+	}
+
+
+
+
+	
+	
+	
 
 }

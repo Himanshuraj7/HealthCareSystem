@@ -10,14 +10,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="USERS")
-@DynamicUpdate(true)
-@DynamicInsert(true)
 public class Users {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userseq")
@@ -31,23 +27,20 @@ public class Users {
 	@Pattern(regexp="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,14}$", message=": Password must contain one number,one alphabet,one special character and size should be at least 8 characters and not more than 14 characters")
 	private String userPassword;
 	
+	@NotEmpty(message="username is mandatory")
 	@Column(name="username", length=20)
 	private String userName;
 	
 	@NotEmpty(message="contact number is mandatory")
+	@Size(min=10, max=10, message="contact number size must be 10")
 	private String contactNo;
 	
-	@NotEmpty(message="User role is mandatory")
 	private String userRole;
-	
-	@NotEmpty(message="EmailId is mandatory")
-	private String emailId;
-	
-	@NotEmpty(message="Age is mandatory")
 	private int age;
-	
-	@NotEmpty(message="Gender is mandatory")
 	private String gender;
+	
+	@NotEmpty(message="email id is mandatory")
+	private String emailId;
 	
 	public long getUserId() {
 		return userId;
@@ -93,7 +86,6 @@ public class Users {
 		this.emailId = emailId;
 	}
 	
-	
 	public int getAge() {
 		return age;
 	}
@@ -107,24 +99,21 @@ public class Users {
 		this.gender = gender;
 	}
 	
-
 	
-	public Users(long userId,
-			@NotEmpty(message = "password is mandatory") @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,14}$", message = ": Password must contain one number,one alphabet,one special character and size should be at least 8 characters and not more than 14 characters") String userPassword,
-			String userName, @NotEmpty(message = "contact number is mandatory") String contactNo,
-			@NotEmpty(message = "User role is mandatory") String userRole,
-			@NotEmpty(message = "EmailId is mandatory") String emailId, @NotEmpty(message = "Age is mandatory") int age,
-			@NotEmpty(message = "Gender is mandatory") String gender) {
+	
+	public Users(long userId, String userPassword, String userName, String contactNo,
+			String userRole, int age, String gender, String emailId) {
 		super();
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userName = userName;
 		this.contactNo = contactNo;
 		this.userRole = userRole;
-		this.emailId = emailId;
 		this.age = age;
 		this.gender = gender;
+		this.emailId = emailId;
 	}
+	
 	public Users() {
 		super();
 	}
