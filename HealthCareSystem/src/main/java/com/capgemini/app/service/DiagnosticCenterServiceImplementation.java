@@ -14,7 +14,14 @@ import com.capgemini.app.entity.Test;
 import com.capgemini.app.exception.InvalidException;
 import com.capgemini.app.exception.NullException;
 import com.capgemini.app.exception.WrongValueException;
-
+/************************************************************************************
+ *          @author          Ashish kumar
+ *          
+ *          Description      It is a Diagnostic center service class that provides the functionality 
+ *          				 to find existing center,add tests in existing center,remove center 
+                             
+  *         Created Date    27-APR-2020
+ ************************************************************************************/
 @Service
 @Transactional
 public class DiagnosticCenterServiceImplementation implements DiagnosticCenterService{

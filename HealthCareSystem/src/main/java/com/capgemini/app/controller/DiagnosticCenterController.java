@@ -19,7 +19,14 @@ import com.capgemini.app.entity.Test;
 import com.capgemini.app.exception.NullException;
 import com.capgemini.app.exception.WrongValueException;
 import com.capgemini.app.service.DiagnosticCenterService;
-
+/************************************************************************************
+ *          @author          Ashish kumar
+ *          
+ *          Description      It is a Diagnostic center controller class that provides the functionality 
+ *          				 to interact customer to our product and return to the requests to frontend
+                             
+  *         Created Date    27-APR-2020
+ ************************************************************************************/
 @RestController
 @CrossOrigin
 public class DiagnosticCenterController {
@@ -59,7 +66,14 @@ public class DiagnosticCenterController {
 			throw new NullException(e.getMessage());
 		}
 	}
-	
+	/************************************************************************************
+	 * Method: getCenter
+     *Description: To view center and tests present under it
+	 * @param centerId       - center's id
+	 * @returns ResponseEntity      - 200 OK, if centerId exists
+	 * @throws NullException - It is raised due to invalid center id
+	 ************************************************************************************/
+
 	@GetMapping("/getCenter/{centerId}")
     public ResponseEntity<DiagnosticCenter> getCenter(@PathVariable("centerId") long id) {
 		DiagnosticCenter center= centerService.getCenter(id);
@@ -99,6 +113,13 @@ public class DiagnosticCenterController {
 		
 	}
 	
+	/************************************************************************************
+	 * Method: addTest
+     *Description: To view center and tests present under it
+	 * @param centerId       - center's id
+	 * @returns String     	 - test added successfully, if centerId is present
+	 * @throws NullException - It is raised if centerId doesnot exists
+	 ************************************************************************************/
 	@PostMapping("addTest/{centerId}")
 	public String addTest(@PathVariable (value="centerId") long centerId,
 						@RequestBody Test test) {

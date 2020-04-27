@@ -11,6 +11,14 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.app.dto.CenterDto;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Test;
+/************************************************************************************
+ *          @author          Ashish kumar
+ *          
+ *          Description      It is a Diagnostic center dao class that provides the functionality 
+ *          				 to persist new center,persist any changes made in the given functionality 
+                             
+  *         Created Date    27-APR-2020
+ ************************************************************************************/
 
 @Repository
 
