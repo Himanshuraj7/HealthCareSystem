@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.app.dto.TestDto;
-import com.capgemini.app.entities.Center;
+import com.capgemini.app.entities.DiagnosticCenter;
 import com.capgemini.app.entities.Test;
 import com.capgemini.app.service.TestService;
 
@@ -36,18 +36,18 @@ public class TestController {
 
 	// For displaying all centers along with their test list
 	@GetMapping("/centersTests")										//Working
-	public List<Center> getAllCenter() {
+	public List<DiagnosticCenter> getAllCenter() {
 		return testService.getAllCenter();
 	}
 	
 	@GetMapping("/centers")
-	public List<Center> getOnlyCenter(){
+	public List<DiagnosticCenter> getOnlyCenter(){
 		return testService.getOnlyCenter();
 	}
 
 	// For displaying a particular center along with its tests available.
 	@GetMapping("/center/{centerId}")
-	public List<Center> getCenter(@PathVariable long centerId) {							//Working
+	public List<DiagnosticCenter> getCenter(@PathVariable long centerId) {							//Working
 		return testService.getCenter(centerId);
 	}
 
@@ -59,7 +59,7 @@ public class TestController {
 
 	// Another method for getting a particular center along with its tests.
 	@GetMapping("/center2/{centerId}")
-	public Center getCenter2(@PathVariable long centerId) {								//Working
+	public DiagnosticCenter getCenter2(@PathVariable long centerId) {								//Working
 		return testService.getCenter2(centerId);
 	}
 	//Method for removing a particular test under a center using its test id

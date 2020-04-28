@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.capgemini.app.dao.TestDao;
 import com.capgemini.app.dto.TestDto;
-import com.capgemini.app.entities.Center;
+import com.capgemini.app.entities.DiagnosticCenter;
 import com.capgemini.app.entities.Test;
 
 @Service
@@ -26,12 +26,12 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
-	public List<Center> getAllCenter() {
+	public List<DiagnosticCenter> getAllCenter() {
 		return testDao.getAllCenter();
 	}
 
 	@Override
-	public List<Center> getCenter(long centerId) {
+	public List<DiagnosticCenter> getCenter(long centerId) {
 		return testDao.getCenter(centerId);
 	}
 
@@ -41,7 +41,7 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
-	public Center getCenter2(long centerId) {
+	public DiagnosticCenter getCenter2(long centerId) {
 		return testDao.getCenter2(centerId);
 	}
 
@@ -58,7 +58,7 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
-	public List<Center> getOnlyCenter() {
+	public List<DiagnosticCenter> getOnlyCenter() {
 		testDao.getOnlyCenter();
 		return null;
 	}

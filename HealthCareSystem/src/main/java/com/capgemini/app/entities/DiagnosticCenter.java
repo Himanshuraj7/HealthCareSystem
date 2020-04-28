@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Center {
+public class DiagnosticCenter {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "centerId_generator")
@@ -55,14 +55,14 @@ public class Center {
 		return "Center [centerId=" + centerId + ", centerName=" + centerName + ", test=" + test + "]";
 	}
 
-	public Center(long centerId, String centerName, List<Test> test) {
+	public DiagnosticCenter(long centerId, String centerName, List<Test> test) {
 
 		this.centerId = centerId;
 		this.centerName = centerName;
 		this.test = test;
 	}
 
-	public Center() {
+	public DiagnosticCenter() {
 
 	}
 

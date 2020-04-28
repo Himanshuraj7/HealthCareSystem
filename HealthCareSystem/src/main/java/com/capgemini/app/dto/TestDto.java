@@ -1,27 +1,27 @@
 package com.capgemini.app.dto;
 
-import com.capgemini.app.entities.Center;
+import com.capgemini.app.entities.DiagnosticCenter;
 
 public class TestDto {
 
-	private Center center;
+	private DiagnosticCenter diagnosticCenter;
 
-	public Center getCenter() {
-		return center;
+	public DiagnosticCenter getCenter() {
+		return diagnosticCenter;
 	}
 
-	public void setCenter(Center center) {
-		this.center = center;
+	public void setCenter(DiagnosticCenter diagnosticCenter) {
+		this.diagnosticCenter = diagnosticCenter;
 	}
 
 	@Override
 	public String toString() {
-		return "TestDto [center=" + center + "]";
+		return "TestDto [center=" + diagnosticCenter + "]";
 	}
 
-	public TestDto(Center center) {
+	public TestDto(DiagnosticCenter diagnosticCenter) {
 
-		this.center = center;
+		this.diagnosticCenter = diagnosticCenter;
 	}
 
 	public TestDto() {
