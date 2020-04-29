@@ -1,20 +1,7 @@
 package com.capgemini.app;
 
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.capgemini.app.entity.Appointment;
-import com.capgemini.app.entity.DiagnosticCenter;
-import com.capgemini.app.entity.Test;
-import com.capgemini.app.entity.User;
-import com.capgemini.app.repositery.AppointmentRepositery;
-import com.capgemini.app.repositery.DiagnosticCenterRepositery;
-import com.capgemini.app.repositery.TestRepositery;
-import com.capgemini.app.repositery.UserRepositery;
 
 @SpringBootApplication
 public class HealthCareSystemApplication/* implements CommandLineRunner*/{

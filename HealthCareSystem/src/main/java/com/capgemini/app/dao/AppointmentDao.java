@@ -5,6 +5,7 @@ import java.util.List;
 import com.capgemini.app.entity.Appointment;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Test;
+import com.capgemini.app.entity.User;
 
 public interface AppointmentDao {
 	boolean makeAppointment(Appointment appointment);
@@ -12,5 +13,6 @@ public interface AppointmentDao {
 	List<Appointment> getAppointmentList();
 	DiagnosticCenter view(long centerId);
 	Test viewTest(long id);
-	Appointment approveAppointment(long id);
+	boolean approveAppointment(long id);
+	User viewUser(long id);
 }

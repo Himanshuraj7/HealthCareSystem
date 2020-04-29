@@ -3,6 +3,7 @@ package com.capgemini.app.entity;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,10 +20,11 @@ public class DiagnosticCenter {
 	@SequenceGenerator(name = "centerId_generator", initialValue = 1001, allocationSize = 1)
 	private long centerId;
 
+	@Column(name="center_name",length=25)
 	private String centerName;
 
 	@OneToMany(cascade = CascadeType.ALL, targetEntity = Test.class)
-	@JoinColumn(name = "center_no", referencedColumnName = "centerId")
+	@JoinColumn(name = "center_Id", referencedColumnName = "centerId")
 	private List<Test> test;
 
 	public long getCenterId() {

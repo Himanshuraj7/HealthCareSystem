@@ -1,8 +1,6 @@
 package com.capgemini.app.dao;
 
-
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -10,6 +8,16 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.app.entity.Appointment;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Test;
+import com.capgemini.app.entity.User;
+
+/************************************************************************************
+ *          @author          Sachin kumar
+ *          
+ *          Description      It is a Appointment dao class that provides the functionality 
+ *          				 to persist new Appointment,make an appointment,approve an appointment 
+                             
+  *         Created Date    27-APR-2020
+ ************************************************************************************/
 
 @Repository
 public class AppointmentDaoImpl implements AppointmentDao{
@@ -25,13 +33,19 @@ public class AppointmentDaoImpl implements AppointmentDao{
 
 	@Override
 	public Appointment viewAppointment(long appointmentId){
-		// TODO Auto-generated method stub
-//		Appointment appointment=em.find(Appointment.class, appointmentId);
-//		long id=appointment.getTest().getTestId();
-//		String Qstr="SELECT appointment.,appointment FROM Appointment appointment having ;
-		return em.find(Appointment.class, appointmentId);
-		
+		String Qstr="SELECT appointment FROM Appointment appointment";
+		TypedQuery<Appointment> query=em.createQuery(Qstr,Appointment.class);
+		List<Appointment>list =query.getResultList();
+		Appointment container = new Appointment();
+		for (Appointment row : list) {
+		    if(row.getAppointmentId()==appointmentId) {
+		    	container=row;
+		    	break;
+		    }
+		}
+		return container;
 	}
+	
 	@Override
 	public DiagnosticCenter view(long centerId){
 		// TODO Auto-generated method stub
@@ -53,11 +67,17 @@ public class AppointmentDaoImpl implements AppointmentDao{
 	}
 
 	@Override
-	public Appointment approveAppointment(long id) {
+	public boolean approveAppointment(long id) {
 		// TODO Auto-generated method stub
 		Appointment appointment=em.find(Appointment.class, id);
 		appointment.setApproved(true);
-		return appointment;
+		return true;
+	}
+
+	@Override
+	public User viewUser(long id) {
+		// TODO Auto-generated method stub
+		return em.find(User.class,id);
 	}
 
 }

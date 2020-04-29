@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -39,14 +38,24 @@ public class Appointment implements Serializable{
     @SequenceGenerator(sequenceName = "appointment_seq", allocationSize = 1, name = "appointment_seq")
 	private long appointmentId;
 	
-	@OneToOne
-	@JoinColumn(name = "testId")
+	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE}, optional = false)
+	@JoinColumn(name = "testId",nullable = false)
 	private Test test;
+	
+	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.MERGE}, optional = false)
+	@JoinColumn(name = "USER_ID", nullable = false)
+	private User user;
 	
 	private Date datetime;
 	
 	private boolean approved;
 	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public Test getTest() {
 		return test;
 	}
@@ -81,13 +90,15 @@ public class Appointment implements Serializable{
 	public Appointment() {
 		super();
 	}
-	public Appointment( long appointmentId, Date datetime, boolean approved) {
+	public Appointment(DiagnosticCenter center, long appointmentId, Test test, Date datetime, boolean approved) {
 		super();
-
+		this.center = center;
 		this.appointmentId = appointmentId;
+		this.test = test;
 		this.datetime = datetime;
 		this.approved = approved;
 	}
+	
 
 
 }

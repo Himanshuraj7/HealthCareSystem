@@ -1,13 +1,10 @@
 package com.capgemini.app.entity;
 
 import java.io.Serializable;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -24,8 +21,8 @@ public class User implements Serializable{
     @SequenceGenerator(sequenceName = "userseq", allocationSize = 1, name = "userseq")
 	private long userId;
 
-	@OneToOne(cascade=CascadeType.ALL)
-	Appointment appointment;
+//	@OneToOne(cascade=CascadeType.ALL)
+//	Appointment appointment;
 	
 	private String userPassword;
 	private String userName;
@@ -39,12 +36,12 @@ public class User implements Serializable{
 		this.userId = userId;
 	}
 	
-	public Appointment getAppointment() {
-		return appointment;
-	}
-	public void setAppointment(Appointment appointment) {
-		this.appointment = appointment;
-	}
+//	public Appointment getAppointment() {
+//		return appointment;
+//	}
+//	public void setAppointment(Appointment appointment) {
+//		this.appointment = appointment;
+//	}
 	public String getUserPassword() {
 		return userPassword;
 	}
@@ -79,11 +76,10 @@ public class User implements Serializable{
 	{
 	super();
 	}
-	public User(long userId, Appointment appointment, String userPassword, String userName, String contactNo,
+	public User(long userId, String userPassword, String userName, String contactNo,
 			String userRole, String emailId) {
 		super();
 		this.userId = userId;
-		this.appointment = appointment;
 		this.userPassword = userPassword;
 		this.userName = userName;
 		this.contactNo = contactNo;
