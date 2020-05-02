@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="USERS")
 public class Users {
+	@Column(length=5)
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userseq")
     @SequenceGenerator(sequenceName = "userseq", allocationSize = 1, name = "userseq")
@@ -23,25 +25,35 @@ public class Users {
 	@OneToOne(mappedBy = "user")
 	private Appointment appointment;
 	
+	@Column(length=14)
 	@NotEmpty(message="password is mandatory")
 	@Pattern(regexp="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,14}$", message=": Password must contain one number,one alphabet,one special character and size should be at least 8 characters and not more than 14 characters")
 	private String userPassword;
 	
 	@NotEmpty(message="username is mandatory")
-	@Column(name="username", length=20)
+	@Column(length=20)
 	private String userName;
 	
+	@Column(length=10)
 	@NotEmpty(message="contact number is mandatory")
 	@Size(min=10, max=10, message="contact number size must be 10")
 	private String contactNo;
 	
+	@Column(length=5)
 	private String userRole;
+	
+	@Column(length=3)
+	@Min(value=1, message="age can not be less than 1 year")
 	private int age;
+	
+	@Column(length=10)
 	private String gender;
 	
+	@Column(length=30)
 	@NotEmpty(message="email id is mandatory")
 	private String emailId;
 	
+	// getters and setters
 	public long getUserId() {
 		return userId;
 	}
@@ -99,8 +111,7 @@ public class Users {
 		this.gender = gender;
 	}
 	
-	
-	
+	// constructor
 	public Users(long userId, String userPassword, String userName, String contactNo,
 			String userRole, int age, String gender, String emailId) {
 		super();
@@ -117,11 +128,10 @@ public class Users {
 	public Users() {
 		super();
 	}
+	
 	@Override
 	public String toString() {
 		return "Users [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName + ", contactNo="
 				+ contactNo + ", userRole=" + userRole + ", emailId=" + emailId + "]";
-	}
-	
-	
+	}	
 }

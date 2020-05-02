@@ -25,7 +25,7 @@ public class UserDaoImplementation implements UserDao{
 	@Override
 	public boolean checkUserByEmail(String emailId){
    		String Qstr="SELECT users.emailId FROM Users users WHERE users.emailId= :emailId";
-   		TypedQuery<String> query=em.createQuery(Qstr,String.class).setParameter("emailId",emailId);
+   		TypedQuery<String> query=em.createQuery(Qstr, String.class).setParameter("emailId",emailId);
    		try{
    			query.getSingleResult();
    		}
@@ -39,7 +39,7 @@ public class UserDaoImplementation implements UserDao{
 	@Override
 	public Users getUserByEmail(String emailId){
 		String Qstr="SELECT users FROM Users users WHERE users.emailId= :emailId";
-   		TypedQuery<Users> query=em.createQuery(Qstr,Users.class).setParameter("emailId",emailId);
+   		TypedQuery<Users> query=em.createQuery(Qstr, Users.class).setParameter("emailId",emailId);
    		return query.getSingleResult();
 	}
 	

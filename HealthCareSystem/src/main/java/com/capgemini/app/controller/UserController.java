@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.capgemini.app.entity.Users;
 import com.capgemini.app.exception.UserException;
 import com.capgemini.app.service.UserService;
 
+@CrossOrigin
 @RestController
 public class UserController {
 	
@@ -38,15 +40,15 @@ public class UserController {
 		}
 		try {
 			userService.addUser(user);
-			return "User Added";
+			return "User Added, Please proceed to Login";
 		}
 		catch(Exception e) {
-			throw new UserException("Please enter valid Password or Contact Number or Email Id");
-		}
+			throw new UserException(e.getMessage());
+		}	
 	}
 	
-	// login function using emilId and password
-	@GetMapping("/login/{emailId}/{userPassword}")
+	// login function using emailId and password
+	@PostMapping("/login/{emailId}/{userPassword}")
 	public String login(@PathVariable("emailId") String emailId, @PathVariable("userPassword") String userPassword) throws UserException{
 		try {
 			userService.login(emailId, userPassword);
@@ -57,7 +59,7 @@ public class UserController {
 		}
 	}
 	
-	// update user function using userName
+	// update user function using userId
 	@PutMapping("/update/{userId}")
 	public String updateUser(@PathVariable("userId") long userId, @RequestBody Users users) throws UserException{
 	    	System.out.println(users.toString());

@@ -17,8 +17,15 @@ public class UserServiceImplementation implements UserService{
 	
 	// register function
 	@Override
-	public boolean addUser(Users user) {
+	public boolean addUser(Users user) throws UserException {
+		checkEmailExist(user.getEmailId());
 		return userDao.addUser(user);
+	}
+	
+	 public boolean checkEmailExist(String email) throws UserException {
+		 if(userDao.checkUserByEmail(email)==true)
+			 throw new UserException("User already exists, please login with your email");
+		else return true;
 	}
 	
 	// login function, validating email id and password
