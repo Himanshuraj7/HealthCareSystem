@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.capgemini.app.dto.CenterDto;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Test;
 import com.capgemini.app.exception.NullException;
@@ -45,16 +44,19 @@ public class DiagnosticCenterController {
 		}
 	}
 	
+	
 	@PostMapping("/addCenter")
-	public boolean addCenter(@RequestBody CenterDto center) {
+	public String addCenter(@RequestBody DiagnosticCenter center) {
 		try {
 		centerService.addCenter(center);
-		return true;
+		return ""+center.getCenterName()+" "+"added successfully";
 		}
 		catch(Exception e) {
 			throw new WrongValueException(e.getMessage());
 		}
 	}
+	
+	
 	
 	@DeleteMapping("/removeCenter/{centerId}")
     public String removeCenter(@PathVariable("centerId") long id) {
@@ -143,6 +145,19 @@ public class DiagnosticCenterController {
 			throw new NullException(e.getMessage());
 		}
 	}
-
+	
+	@PutMapping("updateCenter/{centerId}")
+	public String updateCenter(@PathVariable long centerId,@RequestBody DiagnosticCenter center)
+	{
+		try {
+			String message=centerService.updateCenter(center, centerId);
+			return message;
+		}
+		catch(Exception e) {
+			throw new NullException(e.getMessage());
+		}
+		
+		
+	}
 
 }

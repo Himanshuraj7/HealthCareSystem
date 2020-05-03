@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.capgemini.app.dao.DiagnosticCenterDao;
-import com.capgemini.app.dto.CenterDto;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Test;
 import com.capgemini.app.exception.InvalidException;
@@ -30,7 +29,7 @@ public class DiagnosticCenterServiceImplementation implements DiagnosticCenterSe
 	private DiagnosticCenterDao centerDao;
 
 	@Override
-	public boolean addCenter(CenterDto center) {
+	public boolean addCenter(DiagnosticCenter center) {
 		if(centerDao.addCenter(center))
 			return true;
 		else
@@ -97,6 +96,13 @@ public class DiagnosticCenterServiceImplementation implements DiagnosticCenterSe
 			throw new NullException("Ooops!!!There is no test with this testId");
 		
 		
+	}
+
+	@Override
+	public String updateCenter(DiagnosticCenter center, long centerId) {
+		if(centerDao.updateCenter(center, centerId)==false)
+			throw new NullException("Ooops!!!There is no center with this centerId");
+		return "center details updated";
 	}
 	
 

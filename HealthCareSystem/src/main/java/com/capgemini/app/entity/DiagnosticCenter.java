@@ -83,7 +83,8 @@ public class DiagnosticCenter {
 		this.test = test;
 	}
 
-	public DiagnosticCenter(long centerId, String centerName, String address, String contactNo, List<Test> test) {
+	public DiagnosticCenter(long centerId, String centerName, String address, String contactNo, 
+			List<Test> test) {
 		super();
 		this.centerId = centerId;
 		this.centerName = centerName;

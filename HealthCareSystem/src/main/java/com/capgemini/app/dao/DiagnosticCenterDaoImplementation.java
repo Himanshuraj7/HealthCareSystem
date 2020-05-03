@@ -8,7 +8,6 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import com.capgemini.app.dto.CenterDto;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Test;
 /************************************************************************************
@@ -27,10 +26,9 @@ public class DiagnosticCenterDaoImplementation implements DiagnosticCenterDao{
 	@PersistenceContext
 	private EntityManager em;
 	
-
 	@Override
-	public boolean addCenter(CenterDto centerDto) {
-		em.persist(centerDto.getCenter());
+	public boolean addCenter(DiagnosticCenter center) {
+		em.persist(center);
 		return true;
 	}
 
@@ -83,6 +81,20 @@ public class DiagnosticCenterDaoImplementation implements DiagnosticCenterDao{
 		em.remove(test);
 		return true;
 	}
+
+	@Override
+	public boolean updateCenter(DiagnosticCenter center,long centerId) {
+		DiagnosticCenter updateCenter=em.find(DiagnosticCenter.class,centerId);
+		if(updateCenter==null)
+			return false;
+		updateCenter.setCenterName(center.getCenterName());
+		updateCenter.setAddress(center.getAddress());
+		updateCenter.setContactNo(center.getContactNo());
+		em.merge(updateCenter);
+		return true;
+	}
+
+	
 
 
 }
