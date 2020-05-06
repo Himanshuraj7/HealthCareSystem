@@ -1,0 +1,22 @@
+<table class="col-md-10 mx-auto table table-striped table-hover table-bordered mt-4">
+    <tr>
+      <th>AppointmentID</th>
+      <th>Date/Time</th>
+      <th>CenterID</th>
+      <th>User Name</th>
+      <th>Test Name</th>
+      <th>Appointment Status</th>
+    </tr>
+    <tr *ngFor="let appointment of appointments">
+      <td>{{appointment.appointmentId}}</td>
+      <td>{{appointment.datetime}}</td> 
+      <td>{{appointment.center.centerId}}</td>
+      <td>{{appointment.user.userName}}</td>
+      <td>{{appointment.test.testName}}</td>
+      <div *ngIf="appointment.approved==false; else elseBlock" ><td>
+        <button  (click)="approveAppointment(appointment.appointmentId)" class="btn btn-success">Approve</button>
+      </td> 
+      </div>
+      <ng-template #elseBlock><td>Approved</td></ng-template>
+    </tr>
+  </table>

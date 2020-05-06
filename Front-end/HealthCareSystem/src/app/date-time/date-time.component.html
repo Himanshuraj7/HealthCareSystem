@@ -1,0 +1,14 @@
+  <h2 style="text-align: center;">Enter Your Appointment Date & Time</h2>
+  <section class="col-md-10 mx-auto mt-4">
+
+    <form #frm="ngForm" (ngSubmit)="addAppointment()">
+      
+        <div class="mt-3">Date & Time</div>
+      <div><input type="date" name="Date/Time" [(ngModel)]="appointment.appointmentDate" class="form-control" #Name="ngModel"
+          required placeholder="Enter Date/Time(YYYY-MM-DD)"/></div>
+      <div class="alert alert-dark mt-3" *ngIf="Name.invalid && (Name.touched || Name.dirty)">Date/Time is
+        required.</div>
+        <div class="mt-3"><input type="submit" [disabled]="!frm.valid" class="btn btn-dark" 
+            /></div>
+    </form>
+  </section>    
