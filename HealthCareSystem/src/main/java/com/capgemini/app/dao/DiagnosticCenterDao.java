@@ -18,14 +18,11 @@ public interface DiagnosticCenterDao {
 	
 	DiagnosticCenter getCenter(long centerId);
 	
-	List<Test> getAllTest();
-	
-	List<Test> getTest(long id);
+	boolean updateCenter(DiagnosticCenter center,long centerId);
 	
 	boolean addTest(long centerId,Test test);
 	
 	boolean removeTest(long testId);
-	
-	boolean updateCenter(DiagnosticCenter center,long centerId);
+
 	
 }

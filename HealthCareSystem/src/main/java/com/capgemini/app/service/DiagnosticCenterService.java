@@ -5,6 +5,7 @@ import java.util.List;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Test;
 
+
 public interface DiagnosticCenterService {
 	
 	boolean addCenter(DiagnosticCenter center);
@@ -15,14 +16,11 @@ public interface DiagnosticCenterService {
 	
 	DiagnosticCenter getCenter(long centerId);
 	
-	List<Test> getAllTest();
-	
-	List<Test> getTest(long id);
+	String updateCenter(DiagnosticCenter center,long centerId);
 	
 	boolean addTest(long centerId,Test test);
 	
 	boolean removeTest(long testId);
 	
-	String updateCenter(DiagnosticCenter center,long centerId);
 
 }

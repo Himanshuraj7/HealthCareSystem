@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.capgemini.app.dao.DiagnosticCenterDao;
 import com.capgemini.app.entity.DiagnosticCenter;
 import com.capgemini.app.entity.Test;
-import com.capgemini.app.exception.InvalidException;
 import com.capgemini.app.exception.NullException;
 import com.capgemini.app.exception.WrongValueException;
 /************************************************************************************
@@ -33,7 +32,7 @@ public class DiagnosticCenterServiceImplementation implements DiagnosticCenterSe
 		if(centerDao.addCenter(center))
 			return true;
 		else
-			throw new InvalidException("center details are invalid");
+			throw new WrongValueException("center details are invalid");
 	}
 
 	@Override
@@ -44,7 +43,7 @@ public class DiagnosticCenterServiceImplementation implements DiagnosticCenterSe
 			return true;
 		}
 		else
-			throw new WrongValueException("center doesn't exist");
+			throw new NullException("center doesn't exist");
 	}
 
 	@Override
@@ -63,47 +62,33 @@ public class DiagnosticCenterServiceImplementation implements DiagnosticCenterSe
 			throw new NullException("Ooops!!!There is no center with this centerId");
 	}
 
-	@Override
-	public List<Test> getTest(long centerId) {
-		if(centerDao.getCenter(centerId)!=null)
-			return centerDao.getTest(centerId);
-		else 
-			throw new NullException("Ooops!!!There is no test with this testId");
-	}
-
-	@Override
-	public List<Test> getAllTest() {
-		if(centerDao.getAllTest()!=null)
-			return centerDao.getAllTest();
-		else
-			throw new NullException("Ooops!!!There is no test");
-			
-	}
-
-	@Override
-	public boolean addTest(long centerId,Test test) {
-		if(centerDao.addTest(centerId,test))
-		return true;
-		else
-			throw new NullException("center not present");
-	}
-
-	@Override
-	public boolean removeTest(long testId) {
-		if(centerDao.removeTest(testId))
-			return true;
-		else
-			throw new NullException("Ooops!!!There is no test with this testId");
-		
-		
-	}
-
+	
 	@Override
 	public String updateCenter(DiagnosticCenter center, long centerId) {
 		if(centerDao.updateCenter(center, centerId)==false)
 			throw new NullException("Ooops!!!There is no center with this centerId");
-		return "center details updated";
+		return ""+center.getCenterName()+" details updated";
 	}
+	
+	@Override
+	public boolean addTest(long centerId, Test test) {
+		if(centerDao.addTest(centerId, test))
+			return true;
+		else
+			throw new WrongValueException("center or test details are invalid");
+	}
+	
+	@Override
+	public boolean removeTest(long testId) {
+		if(centerDao.removeTest(testId))
+			return true;
+		else 
+			throw new NullException("Ooops!!!There is no test with this testId");
+
+	}
+
+	
+
 	
 
 }

@@ -53,36 +53,6 @@ public class DiagnosticCenterDaoImplementation implements DiagnosticCenterDao{
 	}
 	
 	@Override
-	public List<Test> getAllTest() {
-		String Qstr="SELECT test FROM Test test";
-		TypedQuery<Test> query=em.createQuery(Qstr,Test.class);
-		return query.getResultList();
-	}
-
-	@Override
-	public List<Test> getTest(long id) {
-		String Qstr="SELECT test FROM Test test WHERE test.centerId="+id;
-		TypedQuery<Test> query=em.createQuery(Qstr,Test.class);
-		return query.getResultList();
-	}
-
-	@Override
-	public boolean addTest(long centerId,Test test) {
-		DiagnosticCenter center = em.find(DiagnosticCenter.class, centerId);
-		test.setTestName(test.getTestName());
-		center.getTest().add(test);
-		em.persist(center);
-		return true;
-	}
-
-	@Override
-	public boolean removeTest(long testId) {
-		Test test = em.find(Test.class, testId);
-		em.remove(test);
-		return true;
-	}
-
-	@Override
 	public boolean updateCenter(DiagnosticCenter center,long centerId) {
 		DiagnosticCenter updateCenter=em.find(DiagnosticCenter.class,centerId);
 		if(updateCenter==null)
@@ -93,8 +63,24 @@ public class DiagnosticCenterDaoImplementation implements DiagnosticCenterDao{
 		em.merge(updateCenter);
 		return true;
 	}
-
 	
+	@Override
+	public boolean addTest(long centerId, Test test) {
+		DiagnosticCenter diagnosticCenter = em.find(DiagnosticCenter.class, centerId);
+		// test.setTestId(test.getTestId()); because testId is automatically generating
+		test.setTestName(test.getTestName());
+		diagnosticCenter.getTest().add(test);
+		em.persist(diagnosticCenter);
+		return true;
+	}
+	
+	@Override
+	public boolean removeTest(long testId) {
+		Test test = em.find(Test.class, testId);
+		em.remove(test);
+		
+		return true;
+	}
 
 
 }
