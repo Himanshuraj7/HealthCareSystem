@@ -1,0 +1,33 @@
+<h2 class="text-center" style="margin: 10px;"><b>{{center.centerName}} Details</b></h2> 
+
+<hr/>
+<div *ngIf="center" class="card">
+<div style="float: left;">
+  <div>
+    <label><b>Center Name: </b></label> {{center.centerName}}
+  </div>
+  <div>
+    <label><b>City: </b></label> {{center.address}}
+  </div>
+  <div>
+    <label><b>Contact No: </b></label> {{center.contactNo}}
+  </div> 
+  </div>
+  <div style="float: right;">
+    <button class="btn btn-primary" (click)="addTest(center.centerId)">Add Tests</button>
+    </div>
+  <hr>
+  <table class="col-md-10 mx-auto table table-striped table-hover table-bordered mt-4">
+    <tr>
+      <th>Tests Available</th>
+      <th style="width: 50px;">Action</th>
+    </tr>
+  <tr *ngFor="let t of center.test">
+   <td>{{t.testName}}</td>
+   <td><button class="btn btn-danger" (click)="removeTest(t.testId)" title="Clicking this button will delete the corresponding test.">Delete</button>   </td>
+  </tr> 
+  </table> 
+</div>
+<button (click)="list()" class="btn btn-primary">Back to Center List</button>   &nbsp;&nbsp;
+<button (click)="updateCenter(center.centerId)" class="btn btn-primary">Update</button><br>
+

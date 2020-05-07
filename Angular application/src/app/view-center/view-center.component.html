@@ -1,0 +1,25 @@
+<h3 class="text-center">Diagnostic Center List</h3>
+<table class="col-md-10 mx-auto table table-striped table-hover table-bordered mt-4">
+
+    <tr>
+      <th>CENTER ID</th>
+      <th>CENTER NAME</th>
+      <th>CITY</th>
+      <th>CONTACT NO</th>
+      <th>OPERATIONS</th>
+    </tr>
+    <tr *ngFor="let center of centers ">
+      <td>{{center.centerId}}</td>
+      <td>{{center.centerName}}</td>  
+      <td>{{center.address}}</td>  
+      <td>{{center.contactNo}}</td>  
+      <td>
+        <button class="btn btn-danger" (click)="deleteCenter(center.centerId)">  Delete</button>
+        &nbsp;&nbsp;
+        <button class="btn btn-success" (click)="updateCenter(center.centerId)">Update</button>
+        &nbsp;&nbsp;
+        <button class="btn btn-primary" (click)="centerDetails(center.centerId)">Details</button>
+      </td>
+    </tr>
+  </table>
+  

@@ -1,0 +1,61 @@
+
+<section class="col-md-10 mx-auto mt-4">
+  <h3>Update {{center.centerName}} </h3>
+    <form #frm="ngForm" (ngSubmit)="onSubmit()">
+      
+      <div class="mt-3">Center Name</div>
+      <div><input type="text"  name="center name" [(ngModel)]="center.centerName" class="form-control" #Name="ngModel"
+        required pattern="[a-zA-Z]+[a-zA-Z ]+[a-zA-Z]$" required minlength="3" maxlength="50" placeholder="Enter center name"/></div>
+      <div class="alert alert-danger mt-3" *ngIf="Name.invalid && (Name.touched || Name.dirty)">
+        <div *ngIf="Name.errors.required">
+          Name is required.
+        </div>
+        <div *ngIf="Name.errors.minlength">
+          Name must be at least 3 characters long.
+        </div>
+        <div *ngIf="Name.errors.maxlength"> </div>
+        <div *ngIf="Name.errors.pattern">
+          Name cannot contain special characters or number(@,#,$,& or space at the end or beginning of the name).
+        </div>
+      </div>
+
+        <div class="mt-3">City</div>
+      <div><input type="text" name="address" [(ngModel)]="center.address" class="form-control" #Address="ngModel" 
+        required pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" required minlength="3" maxlength="50"  placeholder="Enter city"/> </div>
+      <div class="alert alert-danger mt-3" *ngIf="Address.invalid && (Address.touched || Address.dirty)">
+        <div *ngIf="Address.errors.required">
+          Address is required.
+        </div>
+        <div *ngIf="Address.errors.minlength">
+          Address must be at least 3 characters long.
+        </div>
+        <div *ngIf="Address.errors.maxlength"> </div>
+        <div *ngIf="Address.errors.pattern">
+          City name cannot contain special characters and number(@,#,$,& or space at the end or beginning of the name).
+        </div>
+      </div>
+
+      <div class="mt-3">Contact No</div>
+      <div><input type="text" name="contact no" [(ngModel)]="center.contactNo" class="form-control" #contact="ngModel"
+        required pattern="^[0-9]+$" required minlength="10" maxlength="10" placeholder="Enter conatact no"/></div>
+      <div class="alert alert-danger mt-3" *ngIf="contact.invalid && (contact.touched || contact.dirty)">
+        <div *ngIf="contact.errors.required">
+          contact no is required.
+        </div>
+        <div *ngIf="contact.errors.minlength">
+          contact no must be of 10 digits.
+        </div>
+        <div *ngIf="contact.errors.pattern">
+          contact no can contain only digits
+        </div>
+      </div>
+
+      
+  
+      <div class="mt-3"><input type="submit" [disabled]="!frm.valid" class="btn btn-primary" 
+         /></div>
+
+         
+      
+    </form>
+  </section>    
