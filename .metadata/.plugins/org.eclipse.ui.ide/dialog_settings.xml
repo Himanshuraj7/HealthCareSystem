@@ -50,6 +50,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/Users/vishalmawani/Downloads/HealthCareSystem-himanshu/BackEnd"/>
+			<item value="/Users/vishalmawani/Downloads/demo-3-JPA-RESTful"/>
 			<item value="/Users/vishalmawani/Desktop/Study Material CAPG/module3data/M3-PDF/JPA With Hibernate/Demos/Demos/JPAOneToManyBI"/>
 			<item value="/Users/vishalmawani/Desktop/Study Material CAPG/module3data/M3-PDF/JPA With Hibernate/Demos/Demos/JPAManyToManyBI"/>
 			<item value="/Users/vishalmawani/Downloads/OnlineWallet-repo-master"/>

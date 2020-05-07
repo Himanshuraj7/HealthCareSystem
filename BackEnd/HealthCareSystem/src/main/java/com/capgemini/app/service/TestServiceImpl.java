@@ -1,0 +1,60 @@
+package com.capgemini.app.service;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.capgemini.app.dao.TestDao;
+import com.capgemini.app.dto.TestDto;
+import com.capgemini.app.entities.DiagnosticCenter;
+import com.capgemini.app.entities.Test;
+
+
+@Service
+@Transactional
+public class TestServiceImpl implements TestService {
+
+	@Autowired
+	TestDao testDao;
+
+	@Override
+	public boolean addCenter(TestDto testDto) {
+		testDao.addCenter(testDto);
+			return true;
+
+
+	}
+
+	@Override
+	public boolean removeCenter(long centerId) {
+		
+			return testDao.removeCenter(centerId);
+		
+
+	}
+
+	@Override
+	public List<DiagnosticCenter> getAllCenter() {
+		return testDao.getAllCenter();
+	}
+
+	@Override
+	public DiagnosticCenter getCenter(long centerId) {
+		return testDao.getCenter(centerId);
+	}
+
+	@Override
+	public boolean addTest(long centerId, Test test) {
+		return testDao.addTest(centerId, test);
+	}
+
+	@Override
+	public boolean removeTest(long testId) {
+		return testDao.removeTest(testId);
+
+	}
+
+}
