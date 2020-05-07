@@ -11,8 +11,17 @@ import com.capgemini.app.dao.TestDao;
 import com.capgemini.app.dto.TestDto;
 import com.capgemini.app.entities.DiagnosticCenter;
 import com.capgemini.app.entities.Test;
+import com.capgemini.app.exceptions.TestException;
 
-
+/************************************************************************************
+ * 			@author 			Vishal Mawani
+ * 
+ *         Description   		Test Service class provides functionality to add a test,
+ *         						remove a test, view diagnostic centers and throws corresponding
+ *         						exceptions.
+ * 
+ *         Created Date 		27-APR-2020
+ ************************************************************************************/
 @Service
 @Transactional
 public class TestServiceImpl implements TestService {
@@ -21,18 +30,27 @@ public class TestServiceImpl implements TestService {
 	TestDao testDao;
 
 	@Override
-	public boolean addCenter(TestDto testDto) {
-		testDao.addCenter(testDto);
+	public boolean addCenter(TestDto testDto) throws TestException {
+		if (testDao.addCenter(testDto))
 			return true;
-
-
+		else
+			throw new TestException("Center not added.");
 	}
 
 	@Override
-	public boolean removeCenter(long centerId) {
-		
-			return testDao.removeCenter(centerId);
-		
+	public String addTest(long centerId, Test test) throws TestException {
+		if (testDao.addTest(centerId, test))
+			return "Test Added Successfully";
+		else
+			throw new TestException("Test already exists");
+	}
+
+	@Override
+	public String removeTest(long testId) throws TestException {
+		if (testDao.removeTest(testId))
+			return "Test Removed";
+		else
+			throw new TestException("Test not found.");
 
 	}
 
@@ -44,17 +62,6 @@ public class TestServiceImpl implements TestService {
 	@Override
 	public DiagnosticCenter getCenter(long centerId) {
 		return testDao.getCenter(centerId);
-	}
-
-	@Override
-	public boolean addTest(long centerId, Test test) {
-		return testDao.addTest(centerId, test);
-	}
-
-	@Override
-	public boolean removeTest(long testId) {
-		return testDao.removeTest(testId);
-
 	}
 
 }

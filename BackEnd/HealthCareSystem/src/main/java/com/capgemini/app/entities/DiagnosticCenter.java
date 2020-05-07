@@ -13,6 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+/************************************************************************************
+ *          @author          Vishal Mawani
+ *          
+ *          Description      Diagnostic Center Entity class shows all the columns and contains respective
+ *          				 getters and setters and constructors.
+                             
+  *         Created Date    27-APR-2020
+ ************************************************************************************/
 @Entity
 public class DiagnosticCenter {
 

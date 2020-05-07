@@ -9,10 +9,9 @@ import { TestService } from '../test.service';
   styleUrls: ['./center-details.component.css']
 })
 export class CenterDetailsComponent implements OnInit {
-
-
+  info : String;
+  errorInfo : String;
   centerId:number;
-  
   center:DiagnosticCenter;
   test:Test[];
  
@@ -37,8 +36,14 @@ export class CenterDetailsComponent implements OnInit {
     this.testService.removeTest(testId).subscribe(
       data=>{
         console.log(data);
-        alert("Test is deleted from database.")
+        this.info = data;
+        alert(data);
         this.diagnosticCenterDetails(this.centerId);
+      },
+      error => {
+        this.errorInfo = error.error; 
+        console.log(this.errorInfo);
+        alert("Test not found");
       });
   }
 

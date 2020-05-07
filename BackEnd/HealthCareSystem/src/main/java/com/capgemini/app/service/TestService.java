@@ -5,19 +5,18 @@ import java.util.List;
 import com.capgemini.app.dto.TestDto;
 import com.capgemini.app.entities.DiagnosticCenter;
 import com.capgemini.app.entities.Test;
+import com.capgemini.app.exceptions.TestException;
 
 public interface TestService {
 
-	public boolean addCenter(TestDto testDto);
-
-	public boolean removeCenter(long centerId);
+	public boolean addCenter(TestDto testDto) throws TestException;
 
 	public List<DiagnosticCenter> getAllCenter();
 
 	public DiagnosticCenter getCenter(long centerId);
 
-	public boolean addTest(long centerId, Test test);
+	public String addTest(long centerId, Test test) throws TestException;
 
-	public boolean removeTest(long testId);
+	public String removeTest(long testId) throws TestException;
 
 }

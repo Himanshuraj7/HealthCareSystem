@@ -8,7 +8,9 @@
          required minlength="3" maxlength="20"/></div>
 
         <div class="alert alert-danger mt-3" *ngIf="Name.invalid && (Name.touched || Name.dirty)">
-            
+          <div *ngIf="Name.errors.pattern">
+            Special characters not allowed.
+          </div>
             <div *ngIf="Name.errors.required">
               Please enter a test name.
             </div>

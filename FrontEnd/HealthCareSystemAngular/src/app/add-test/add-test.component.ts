@@ -9,7 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./add-test.component.css']
 })
 export class AddTestComponent implements OnInit {
-
+  info : string;
+  errorInfo : string;
   centerId :number;
   test: Test = new Test();
 
@@ -17,14 +18,21 @@ export class AddTestComponent implements OnInit {
 
   ngOnInit() {
     this.centerId = this.route.snapshot.params['centerId'];
-    //this.addTest(this.centerId, this.test);
+    
   }
 
   addTest(){
     this.testService.addTest(this.centerId,this.test).subscribe((data)=>{
       console.log(data);
-      alert("Test Added Successfully")
+      this.info = data;
+      alert(data);
       this.router.navigate(['details',this.centerId]);
-    })
+    },
+    error => {
+      this.info = undefined;
+      this.errorInfo = error.error; 
+      console.log(this.errorInfo);
+      alert("Test already exists");
+    } );
   }
 }

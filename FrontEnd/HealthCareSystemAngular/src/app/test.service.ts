@@ -20,11 +20,11 @@ export class TestService {
   }
 
   removeTest(testId : number){
-    return this.http.delete(this.baseUrl+"removeTest/"+testId);
+    return this.http.delete(this.baseUrl+"removeTest/"+testId,{responseType: 'text'});
   }
 
   public addTest(centerId: number, test: Test){
 
-    return this.http.post(this.baseUrl+"addTest/"+centerId,test);
+    return this.http.post(this.baseUrl+"addTest/"+centerId,test,{responseType: 'text'});
   }
 }

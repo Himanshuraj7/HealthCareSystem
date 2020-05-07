@@ -11,6 +11,14 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.app.dto.TestDto;
 import com.capgemini.app.entities.DiagnosticCenter;
 import com.capgemini.app.entities.Test;
+/************************************************************************************
+ *          @author          Vishal Mawani
+ *          
+ *          Description      Test Dao class provides functionality to persist new test,
+ *          				 remove a test and find centers.
+                             
+  *         Created Date     27-APR-2020
+ ************************************************************************************/
 
 @Repository
 public class TestDaoImpl implements TestDao {
@@ -21,13 +29,6 @@ public class TestDaoImpl implements TestDao {
 	@Override
 	public boolean addCenter(TestDto testDto) {
 		em.persist(testDto.getCenter());
-		return true;
-	}
-
-	@Override
-	public boolean removeCenter(long centerId) {
-		DiagnosticCenter diagnosticCenter = em.find(DiagnosticCenter.class, centerId);
-		em.remove(diagnosticCenter);
 		return true;
 	}
 
@@ -48,18 +49,30 @@ public class TestDaoImpl implements TestDao {
 	@Override
 	public boolean addTest(long centerId, Test test) {
 		DiagnosticCenter diagnosticCenter = em.find(DiagnosticCenter.class, centerId);
-		test.setTestName(test.getTestName());
+		String testName = test.getTestName();
+		List<Test> testList = diagnosticCenter.getTest();
+
+		for (Test t : testList) {
+			if (t.getTestName().equalsIgnoreCase(testName)) {
+				return false;
+			}
+		}
+		test.setTestName(testName);
 		diagnosticCenter.getTest().add(test);
 		em.persist(diagnosticCenter);
 		return true;
+
 	}
 
 	@Override
 	public boolean removeTest(long testId) {
 		Test test = em.find(Test.class, testId);
-		em.remove(test);
-
-		return true;
+		if (test != null) {
+			em.remove(test);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
