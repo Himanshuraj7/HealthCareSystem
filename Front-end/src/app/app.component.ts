@@ -10,7 +10,4 @@ export class AppComponent {
   title = 'HealthCareSystem';
   constructor(private router:Router){}
 
-  // goToPage(pageName:string,appointmentId:number):void{
-  //   this.router.navigate([${pageName}])
-  // }
 }

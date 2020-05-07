@@ -14,7 +14,7 @@ import { Appointment1 } from '../appointment1';
 export class DateTimeComponent implements OnInit { 
   appointment:Appointment1=new Appointment1();
  
-  msg:any;
+  msg:String="Wrong details";
   errorMsg:string;
   constructor(private http:HttpClient, private appointmentService:AppointmentService,
     public datepipe: DatePipe,private route: ActivatedRoute) { }  
@@ -23,7 +23,7 @@ export class DateTimeComponent implements OnInit {
     
     this.appointment.centerId = this.route.snapshot.params['centerId'];
     this.appointment.testId = this.route.snapshot.params['testId'];
-    this.appointment.userId=8;
+    this.appointment.userId=6;
 
   }
 
@@ -32,11 +32,12 @@ export class DateTimeComponent implements OnInit {
       console.log(data);
       this.msg=data;
       this.errorMsg=undefined;
-      alert(this.msg=data);
+      alert(this.msg);
     },
       error=>{
       this.errorMsg=JSON.parse(error.error).message;
       console.log(error.error);
       this.msg=undefined});  
     }
+    
 }

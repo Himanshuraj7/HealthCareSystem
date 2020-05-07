@@ -39,17 +39,7 @@ public class AppointmentDaoImpl implements AppointmentDao{
 
 	@Override
 	public Appointment viewAppointment(long appointmentId){
-		String Qstr="SELECT appointment FROM Appointment appointment";
-		TypedQuery<Appointment> query=entityManager.createQuery(Qstr,Appointment.class);
-		List<Appointment>list =query.getResultList();
-		Appointment container = new Appointment();
-		for (Appointment row : list) {
-		    if(row.getAppointmentId()==appointmentId) {
-		    	container=row;
-		    	break;
-		    }
-		}
-		return container;
+		return entityManager.find(Appointment.class, appointmentId);
 	}
 	
 	@Override

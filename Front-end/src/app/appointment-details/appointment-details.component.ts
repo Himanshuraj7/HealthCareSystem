@@ -11,7 +11,7 @@ export class AppointmentDetailsComponent implements OnInit {
   appointment:Appointment;
   appointmentId:number;
   constructor(private appointmentService:AppointmentService, private route:ActivatedRoute) { }
-
+  msg:String="Wrong Id!!";
   ngOnInit() {
     this.appointment=new Appointment();
     this.appointmentId=this.route.snapshot.params['appointmentId'];
@@ -19,6 +19,7 @@ export class AppointmentDetailsComponent implements OnInit {
       data=>{
         this.appointment=data;
         console.log(data);
-      },error => console.log(error));
+        
+      },error => alert(this.msg));
   }
 }

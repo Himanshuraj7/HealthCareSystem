@@ -1,0 +1,23 @@
+
+<h2 style="text-align: center;">Appointment Details</h2>
+<div *ngIf="appointment.appointmentId; else elseBlock">
+  <table class="col-md-10 mx-auto table table-striped table-hover table-bordered mt-4">
+    <tr>
+      <th>AppointmentID</th>
+      <th>Date/Time</th>
+      <th>Test Name</th>
+      <th>centerId</th>
+      <th>Appointment Status</th>
+    </tr>
+    <tr>
+      <td>{{appointment.appointmentId}}</td>
+      <td>{{appointment.datetime}}</td> 
+      <td>{{appointment.test.testName}}</td>
+      <td>{{appointment.center.centerId}}</td>
+      <div *ngIf="appointment.approved; then thenBlock else elseBlock" ></div>
+      <ng-template #thenBlock><td>Approved</td></ng-template>
+      <ng-template #elseBlock><td>Pending</td></ng-template>
+      
+    </tr>
+  </table></div>
+  <ng-template #elseBlock style="align-content: center;"><h3 style=" color: red;">Appointment Id not Found</h3></ng-template>

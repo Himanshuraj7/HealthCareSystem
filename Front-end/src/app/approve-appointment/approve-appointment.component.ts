@@ -12,7 +12,7 @@ export class ApproveAppointmentComponent implements OnInit {
   appointment:Appointment=new Appointment();
   message:String="Appointment Approved!!";
   info: string;
-  errorInfo: string;
+  errorInfo: string="Appointment Approved";
   appointments:Appointment[];
   constructor(private appointmentService:AppointmentService,private router: Router) { }
 
@@ -29,14 +29,14 @@ export class ApproveAppointmentComponent implements OnInit {
           this.message=data;
           console.log(this.message);
           console.log(data);
-          alert(this.message=data);
+          alert(this.message);
+          
         },
         error => {
           this.info = undefined;
-          this.errorInfo = error.error; 
           console.log(this.errorInfo);
           alert(this.errorInfo);
-        } 
+        }
     );
   }
 }
