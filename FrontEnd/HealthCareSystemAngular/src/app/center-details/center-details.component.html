@@ -1,5 +1,4 @@
 <h2 class="text-center" style="margin: 10px;"><b>{{center.centerName}} Details</b></h2> 
-
 <hr/>
 <div *ngIf="center" class="card">
 <div style="float: left;">
@@ -22,9 +21,9 @@
       <th>Tests Available</th>
       <th style="width: 50px;">Action</th>
     </tr>
-  <tr *ngFor="let t of center.test">
-   <td>{{t.testName}}</td>
-   <td><button class="btn btn-danger" (click)="removeTest(t.testId)" title="Clicking this button will delete the corresponding test.">Delete</button>   </td>
+  <tr *ngFor="let testObject of center.test">
+   <td>{{testObject.testName}}</td>
+   <td><button class="btn btn-danger" (click)="removeTest(testObject.testId)" title="Clicking this button will delete the corresponding test.">Delete</button>   </td>
   </tr> 
   </table> 
 </div>

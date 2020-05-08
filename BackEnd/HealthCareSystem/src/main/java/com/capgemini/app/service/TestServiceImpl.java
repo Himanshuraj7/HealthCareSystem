@@ -55,13 +55,21 @@ public class TestServiceImpl implements TestService {
 	}
 
 	@Override
-	public List<DiagnosticCenter> getAllCenter() {
-		return testDao.getAllCenter();
+	public List<DiagnosticCenter> getAllCenter() throws TestException {
+		if(testDao.getAllCenter()!=null)
+			return testDao.getAllCenter();
+		else
+			throw new TestException("Diagnostic Centers not present. ");
 	}
 
 	@Override
-	public DiagnosticCenter getCenter(long centerId) {
-		return testDao.getCenter(centerId);
+	public DiagnosticCenter getCenter(long centerId) throws TestException {
+		if(testDao.getCenter(centerId)!=null) {
+			return testDao.getCenter(centerId);
+		}
+		else {
+			throw new TestException("Diagnostic Center not found.");
+		}
 	}
 
 }

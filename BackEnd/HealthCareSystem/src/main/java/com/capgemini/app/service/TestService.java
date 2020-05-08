@@ -11,9 +11,9 @@ public interface TestService {
 
 	public boolean addCenter(TestDto testDto) throws TestException;
 
-	public List<DiagnosticCenter> getAllCenter();
+	public List<DiagnosticCenter> getAllCenter() throws TestException;
 
-	public DiagnosticCenter getCenter(long centerId);
+	public DiagnosticCenter getCenter(long centerId) throws TestException;
 
 	public String addTest(long centerId, Test test) throws TestException;
 
